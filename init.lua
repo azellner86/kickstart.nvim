@@ -102,9 +102,9 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
+--Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
@@ -154,7 +154,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 100
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -189,6 +189,31 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- my settings
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+
+-- my own Keymaps
+vim.keymap.set('i', '"', '""<left>', {})
+vim.keymap.set('i', "'", "''<left>", {})
+vim.keymap.set('i', '(', '()<left>', {})
+vim.keymap.set('i', '{', '{}<left>', {})
+vim.keymap.set('i', '[', '[]<left>', {})
+
+vim.keymap.set('i', '{<CR>', '<CR>{<CR>}<ESC>O', {})
+vim.keymap.set('i', '{;<CR>', '<CR>{<CR>};<ESC>O', {})
+
+vim.keymap.set('i', 'jj', '<esc>', {})
+vim.keymap.set('i', 'jk', '<esc>', {})
+vim.keymap.set('i', 'kk', '<esc>', {})
+vim.keymap.set('i', 'jh', '<esc>', {})
+
+vim.keymap.set('n', '<leader>F', ':%s///g<left><left><left>', { noremap = true })
+
+-- nnoremap <leader>f :%s///g<left><left><left>
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -616,7 +641,7 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -789,7 +814,7 @@ require('lazy').setup({
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<tab>'] = cmp.mapping.confirm { select = true },
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
