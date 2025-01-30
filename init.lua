@@ -155,7 +155,6 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 100
-
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -193,8 +192,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
 vim.opt.autoindent = true
+vim.opt.expandtab = false
 
 -- my own Keymaps
 vim.keymap.set('i', '"', '""<left>', {})
@@ -213,7 +212,10 @@ vim.keymap.set('i', 'jh', '<esc>', {})
 
 vim.keymap.set('n', '<leader>F', ':%s///g<left><left><left>', { noremap = true })
 
--- nnoremap <leader>f :%s///g<left><left><left>
+vim.keymap.set('i', '{<cr>', '<cr>{<cr>}<esc><up>o', { noremap = true })
+vim.keymap.set('n', '<c-/>', '<esc>0i//<down><esc>', { noremap = true })
+vim.keymap.set('i', '<c-/>', '<esc>0i//<down>', { noremap = true })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -643,7 +645,7 @@ require('lazy').setup({
       local servers = {
         clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
